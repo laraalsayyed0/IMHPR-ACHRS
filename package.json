@@ -1,0 +1,27 @@
+{
+  "name": "imhp",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "@astrojs/react": "^6.0.5",
+    "@sanity/client": "^6.29.1",
+    "@sanity/image-url": "^2.1.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "resend": "^6.37.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}

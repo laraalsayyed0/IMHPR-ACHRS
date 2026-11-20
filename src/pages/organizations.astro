@@ -1,0 +1,157 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { getOrganizations } from "../lib/sanity";
+
+let organizations = [];
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+if (projectId && projectId !== "your_project_id_here") {
+  organizations = await getOrganizations();
+}
+
+// 6-column collage grid matching the Pages reference layout
+// Row col-slots: 1+1+2+2=6, 3+1+2=6, 2+2+2=6, 2+1+1=6*, 2+2+2=6, 2+2+2=6
+// (* cols 1-2 of row 4 occupied by the row-span-2 cell from row 3)
+const slotPattern = [
+  // Row 1 — small | small | wide | wide
+  { isOrg: true,  cls: '' },
+  { isOrg: true,  cls: '' },
+  { isOrg: true,  cls: 'col-span-2' },
+  { isOrg: true,  cls: 'col-span-2' },
+  // Row 2 — banner (3w) | medium (2w) | small
+  { isOrg: true,  cls: 'col-span-3' },
+  { isOrg: true,  cls: 'col-span-2' },
+  { isOrg: true,  cls: '' },
+  // Row 3 — big (2w×2h) | medium | medium
+  { isOrg: true,  cls: 'col-span-2 row-span-2' },
+  { isOrg: true,  cls: 'col-span-2' },
+  { isOrg: true,  cls: 'col-span-2' },
+  // Row 4 — (big continues cols 1-2) | medium | small | small
+  { isOrg: true,  cls: 'col-span-2' },
+  { isOrg: true,  cls: '' },
+  { isOrg: true,  cls: '' },
+  // Row 5 — medium | medium | medium
+  { isOrg: true,  cls: 'col-span-2' },
+  { isOrg: true,  cls: 'col-span-2' },
+  { isOrg: true,  cls: 'col-span-2' },
+  // Row 6 — wide | wide
+  { isOrg: true,  cls: 'col-span-3' },
+  { isOrg: true,  cls: 'col-span-3' },
+];
+
+let _orgIdx = 0;
+const mosaicCells = slotPattern.map(slot => {
+  if (!slot.isOrg) return { ...slot, org: null };
+  const org = organizations[_orgIdx] ?? null;
+  _orgIdx++;
+  return { ...slot, org };
+});
+---
+
+<Layout title="Member Organizations — IMHPR">
+  <Nav />
+
+  <!-- Header -->
+  <section class="bg-ink px-8 py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="mb-4 text-xs font-bold tracking-widest uppercase text-paper/40">
+        <span class="en">Our Network</span>
+        <span class="fr">Notre Réseau</span>
+        <span class="ar">شبكتنا</span>
+      </p>
+      <h1 class="text-[11vw] md:text-[8vw] font-black leading-none tracking-tighter text-paper uppercase">
+        <span class="en block">Member<br>Organizations</span>
+        <span class="fr block">Organisations<br>Membres</span>
+        <span class="ar block text-[7vw]">المنظمات<br>الأعضاء</span>
+      </h1>
+    </div>
+  </section>
+
+
+  <!-- Photo band -->
+  <div class="w-full overflow-hidden" style="height: clamp(320px, 55vw, 620px);">
+    <img
+      src="/images/globe-hands.webp"
+      alt="Hands holding a globe together"
+      class="w-full h-full object-cover"
+      style="object-position: center 32%; filter: grayscale(100%) contrast(1.05);"
+    />
+  </div>
+
+  <!-- Organizations mosaic -->
+  <section class="bg-paper">
+    {organizations.length === 0 ? (
+      <div class="border-t border-paper/10 py-20 text-center">
+        <p class="text-sm text-paper/40">
+          <span class="en">No organizations added yet.</span>
+          <span class="fr">Aucune organisation ajoutée pour l'instant.</span>
+          <span class="ar">لم تُضَف منظمات بعد.</span>
+        </p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-6" style="grid-auto-rows: 180px; gap: 1px; background: #d1d5db;">
+        {mosaicCells.map((cell) => {
+          if (!cell.isOrg) {
+            return <div class={cell.cls} style="background: #e5e7eb;" />;
+          }
+          if (!cell.org) return null;
+          const org = cell.org;
+          const pngOverrides: Record<string, string> = {
+            'shams.jpeg': '/logos/shams.png',
+            'amdh-mauritania.jpeg': '/logos/amdh-mauritania.png',
+          };
+          const filename = org.logoPath?.split('/').pop() ?? '';
+          const logoSrc = pngOverrides[filename] ?? org.logoPath;
+          const isEfacc = filename.includes('efacc');
+          return (
+            <a
+              href={`/organizations/${org._id}`}
+              class={`relative overflow-hidden group block ${cell.cls}`}
+              style="background: #ffffff;"
+            >
+              <div class="absolute inset-0 flex items-center justify-center">
+                {logoSrc ? (
+                  <img
+                    src={logoSrc}
+                    alt={org.name}
+                    class={`max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300${isEfacc ? ' scale-150' : ''}`}
+                  />
+                ) : (
+                  <span class="text-4xl font-black text-ink/10">{org.name.charAt(0)}</span>
+                )}
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div class="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                <p class="text-[10px] font-bold leading-tight text-paper uppercase tracking-wide">
+                  <span class="en">{org.name}</span>
+                  <span class="fr">{org.nameFr ?? org.name}</span>
+                  <span class="ar">{org.nameAr ?? org.name}</span>
+                </p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    )}
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-ink px-8 py-16">
+    <div class="mx-auto max-w-7xl flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <h2 class="text-3xl font-black leading-none tracking-tighter text-paper uppercase">
+        <span class="en">Join the Movement</span>
+        <span class="fr">Rejoignez le Mouvement</span>
+        <span class="ar">انضم إلى الحركة</span>
+      </h2>
+      <a href="/application?role=partner" class="shrink-0 border border-paper px-6 py-3 text-xs font-bold tracking-widest uppercase text-paper hover:bg-paper hover:text-ink transition-colors">
+        <span class="en">Apply for Membership</span>
+        <span class="fr">Demander l'adhésion</span>
+        <span class="ar">تقديم طلب عضوية</span>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+

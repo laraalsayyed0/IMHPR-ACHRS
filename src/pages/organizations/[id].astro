@@ -1,0 +1,88 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { getOrganizations, getOrganizationById } from "../../lib/sanity";
+
+export async function getStaticPaths() {
+  const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+  if (!projectId || projectId === "your_project_id_here") return [];
+  const orgs = await getOrganizations();
+  return orgs.map((org) => ({ params: { id: org._id } }));
+}
+
+const { id } = Astro.params;
+const org = await getOrganizationById(id!);
+
+if (!org) return Astro.redirect("/organizations");
+
+const typeLabels: Record<string, { en: string; ar: string }> = {
+  member:   { en: "Full Member",           ar: "عضو كامل" },
+  partner:  { en: "Partner Organisation",  ar: "منظمة شريكة" },
+  observer: { en: "Observer",              ar: "مراقب" },
+  associate:{ en: "Associate",             ar: "عضو مشارك" },
+};
+const typeLabel = typeLabels[org.type] ?? { en: org.type, ar: org.type };
+---
+
+<Layout title={`${org.name} — IMHPR`}>
+  <Nav />
+
+  <!-- Header -->
+  <section class="relative bg-ink px-8 py-20 overflow-hidden">
+    <div class="relative mx-auto max-w-7xl">
+      <a href="/organizations" class="mb-8 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-paper/40 hover:text-paper/70 transition-colors">
+        <span>←</span>
+        <span class="en">All Organizations</span>
+        <span class="ar">جميع المنظمات</span>
+      </a>
+      <div class="mt-6">
+        <h1 class="text-[9vw] md:text-[6vw] font-black leading-none tracking-tighter text-paper uppercase">
+          <span class="en block">{org.name}</span>
+          <span class="ar block text-[7vw]">{org.nameAr}</span>
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section class="bg-paper px-8 py-24">
+    <div class="mx-auto max-w-7xl grid gap-16 lg:grid-cols-[1fr_1.5fr]">
+
+      <!-- Meta -->
+      <div class="space-y-0">
+        {org.website && (
+          <div class="py-5">
+            <p class="mb-1 text-xs font-bold tracking-widest uppercase text-muted">
+              <span class="en">Website</span><span class="ar">الموقع</span>
+            </p>
+            <a
+              href={org.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm font-semibold text-accent hover:underline break-all"
+            >{org.website}</a>
+          </div>
+        )}
+      </div>
+
+      <!-- Description -->
+      <div>
+        {(org.description || org.descriptionAr) ? (
+          <p class="text-base leading-relaxed text-muted">
+            <span class="en">{org.description}</span>
+            <span class="ar">{org.descriptionAr ?? org.description}</span>
+          </p>
+        ) : (
+          <p class="text-sm text-muted italic">
+            <span class="en">No description available.</span>
+            <span class="ar">لا يوجد وصف متاح.</span>
+          </p>
+        )}
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

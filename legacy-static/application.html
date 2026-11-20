@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply — IMHP Rights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .apply-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; }
+    @media (max-width: 900px) { .apply-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="nav-brand-text"><span class="en">IMHP Rights</span><span class="ar">IMHP للحقوق</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span class="en">Home</span><span class="ar">الرئيسية</span></a></li>
+        <li><a href="about.html"><span class="en">About Us</span><span class="ar">من نحن</span></a></li>
+        <li><a href="news.html"><span class="en">News</span><span class="ar">الأخبار</span></a></li>
+        <li><a href="events.html"><span class="en">Events</span><span class="ar">الفعاليات</span></a></li>
+        <li><a href="application.html" aria-current="page"><span class="en">Apply</span><span class="ar">تقديم طلب</span></a></li>
+        <li><a href="contact.html"><span class="en">Contact</span><span class="ar">اتصل بنا</span></a></li>
+        <li>
+          <button class="lang-toggle" id="langToggle" type="button">
+            <span class="en">العربية</span><span class="ar">English</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="section-container">
+      <h1><span class="en">Apply to Join IMHP</span><span class="ar">تقدم للانضمام إلى IMHP</span></h1>
+      <p>
+        <span class="en">Whether as a member, volunteer, or partner organisation, your contribution strengthens our ability to defend human rights worldwide.</span>
+        <span class="ar">سواء كعضو أو متطوع أو منظمة شريكة، تُعزز مساهمتك قدرتنا على الدفاع عن حقوق الإنسان في جميع أنحاء العالم.</span>
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-container">
+      <div class="apply-grid">
+        <!-- Sidebar -->
+        <div>
+          <h3 style="color:var(--navy);font-size:1.15rem;font-weight:700;margin-bottom:1rem">
+            <span class="en">How Would You Like to Contribute?</span>
+            <span class="ar">كيف تودّ المساهمة؟</span>
+          </h3>
+          <div class="role-grid" style="grid-template-columns:1fr;margin-bottom:1.5rem">
+            <label class="role-label selected" id="role-member" onclick="selectRole('member',this)">
+              <input type="radio" name="role" value="member" checked>
+              <div class="role-name">🏅 <span class="en">Full Member</span><span class="ar">عضو كامل</span></div>
+              <div class="role-desc"><span class="en">Join as an individual member, participate in governance, and access all IMHP resources.</span><span class="ar">انضم كعضو فردي، شارك في الحوكمة، واطّلع على جميع موارد IMHP.</span></div>
+            </label>
+            <label class="role-label" id="role-volunteer" onclick="selectRole('volunteer',this)">
+              <input type="radio" name="role" value="volunteer">
+              <div class="role-name">🙋 <span class="en">Volunteer</span><span class="ar">متطوع</span></div>
+              <div class="role-desc"><span class="en">Contribute your time and skills to specific campaigns, research projects, or programmes.</span><span class="ar">أسهم بوقتك ومهاراتك في حملات أو مشاريع بحثية أو برامج محددة.</span></div>
+            </label>
+            <label class="role-label" id="role-partner" onclick="selectRole('partner',this)">
+              <input type="radio" name="role" value="partner">
+              <div class="role-name">🤝 <span class="en">Partner Organisation</span><span class="ar">منظمة شريكة</span></div>
+              <div class="role-desc"><span class="en">Formalise collaboration between your organisation and IMHP to co-implement programmes.</span><span class="ar">أضفِ الطابع الرسمي على التعاون بين منظمتك وIMHP لتنفيذ برامج مشتركة.</span></div>
+            </label>
+            <label class="role-label" id="role-observer" onclick="selectRole('observer',this)">
+              <input type="radio" name="role" value="observer">
+              <div class="role-name">👁 <span class="en">Observer / Supporter</span><span class="ar">مراقب / مؤيد</span></div>
+              <div class="role-desc"><span class="en">Stay connected, receive exclusive updates, and show support without a full commitment.</span><span class="ar">ابقَ على تواصل، واحصل على تحديثات حصرية، وأبدِ دعمك دون التزام كامل.</span></div>
+            </label>
+          </div>
+          <div style="background:#eef2e6;border:1px solid var(--border);border-radius:8px;padding:1.2rem">
+            <p style="font-size:0.85rem;font-weight:700;color:var(--navy);margin-bottom:0.4rem">
+              <span class="en">Questions?</span><span class="ar">لديك استفسار؟</span>
+            </p>
+            <p style="font-size:0.82rem;color:var(--muted)">
+              <span class="en">Contact us at <a href="mailto:president@imhp-rights.org" style="color:var(--olive)">president@imhp-rights.org</a> or call +41 76 29 55 181.</span>
+              <span class="ar">تواصل معنا على <a href="mailto:president@imhp-rights.org" style="color:var(--olive)">president@imhp-rights.org</a> أو اتصل على +41 76 29 55 181.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div>
+          <div id="appForm">
+            <h3 style="color:var(--navy);font-size:1.2rem;font-weight:700;margin-bottom:1.25rem">
+              <span class="en">Application Form</span><span class="ar">نموذج الطلب</span>
+            </h3>
+            <form class="app-form" onsubmit="submitApp(event)">
+              <div class="form-row">
+                <label>
+                  <span class="en">First Name *</span><span class="ar">الاسم الأول *</span>
+                  <input type="text" id="fName" required>
+                </label>
+                <label>
+                  <span class="en">Last Name *</span><span class="ar">اسم العائلة *</span>
+                  <input type="text" id="lName" required>
+                </label>
+              </div>
+              <label>
+                <span class="en">Email Address *</span><span class="ar">البريد الإلكتروني *</span>
+                <input type="email" id="appEmail" required placeholder="you@example.com">
+              </label>
+              <div class="form-row">
+                <label>
+                  <span class="en">Phone</span><span class="ar">الهاتف</span>
+                  <input type="tel" id="appPhone" placeholder="+1 234 567 8900" dir="ltr">
+                </label>
+                <label>
+                  <span class="en">Country *</span><span class="ar">البلد *</span>
+                  <select id="appCountry" required>
+                    <option value=""><span class="en">Select…</span></option>
+                    <option>Jordan</option>
+                    <option>Switzerland</option>
+                    <option>Lebanon</option>
+                    <option>Palestine</option>
+                    <option>Egypt</option>
+                    <option>Germany</option>
+                    <option>France</option>
+                    <option>United Kingdom</option>
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                <span class="en">Area of Expertise</span><span class="ar">مجال الخبرة</span>
+                <select id="appExpertise">
+                  <option value=""><span class="en">Select…</span></option>
+                  <option>Human Rights Law</option>
+                  <option>International Law</option>
+                  <option>Advocacy &amp; Policy</option>
+                  <option>Community Development</option>
+                  <option>Research &amp; Documentation</option>
+                  <option>Communications &amp; Media</option>
+                  <option>Education &amp; Training</option>
+                  <option>Finance &amp; Administration</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                <span class="en">Organisation (if applicable)</span><span class="ar">المنظمة (إن وُجدت)</span>
+                <input type="text" id="appOrg">
+              </label>
+              <label>
+                <span class="en">Motivation &amp; Relevant Experience *</span><span class="ar">الدافع والخبرة ذات الصلة *</span>
+                <textarea id="appMotivation" rows="5" required
+                  placeholder="Please describe why you would like to join IMHP Rights…"></textarea>
+              </label>
+              <div class="consent-row">
+                <input type="checkbox" id="appConsent" required>
+                <label for="appConsent" style="font-weight:400">
+                  <span class="en">I consent to IMHP Rights storing and processing my information for the purpose of this application.</span>
+                  <span class="ar">أوافق على قيام IMHP للحقوق بتخزين معلوماتي ومعالجتها لأغراض هذا الطلب.</span>
+                </label>
+              </div>
+              <button type="submit" class="btn-submit btn-submit-full">
+                <span class="en">Submit Application</span><span class="ar">تقديم الطلب</span>
+              </button>
+            </form>
+          </div>
+          <div class="success-box" id="appSuccess" hidden>
+            <div class="success-icon">✅</div>
+            <h3><span class="en">Application Received!</span><span class="ar">تم استلام طلبك!</span></h3>
+            <p>
+              <span class="en">Thank you for applying to join IMHP Rights. Our team will review your application and be in touch within 10 business days.</span>
+              <span class="ar">شكراً لتقدّمك للانضمام إلى IMHP للحقوق. سيراجع فريقنا طلبك ويتواصل معك خلال 10 أيام عمل.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>
+      <span class="en">&copy; 2025 IMHP Rights. All rights reserved.</span>
+      <span class="ar">&copy; 2025 IMHP للحقوق. جميع الحقوق محفوظة.</span>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.getElementById('langToggle').addEventListener('click', function() {
+      var html = document.documentElement;
+      html.lang = html.lang === 'ar' ? 'en' : 'ar';
+    });
+
+    function selectRole(val, el) {
+      document.querySelectorAll('.role-label').forEach(function(l){ l.classList.remove('selected'); });
+      el.classList.add('selected');
+    }
+
+    function submitApp(e) {
+      e.preventDefault();
+      document.getElementById('appForm').hidden = true;
+      document.getElementById('appSuccess').hidden = false;
+    }
+  </script>
+</body>
+</html>

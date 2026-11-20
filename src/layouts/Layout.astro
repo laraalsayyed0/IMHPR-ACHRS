@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "An independent international organisation committed to the promotion and protection of fundamental human rights." } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Apply saved language before first paint to prevent flash -->
+    <script is:inline>
+      try { const l = localStorage.getItem("lang"); if (l === "ar" || l === "fr") document.documentElement.setAttribute("lang", l); } catch(e) {}
+    </script>
+  </head>
+  <body class="bg-paper text-ink antialiased">
+    <slot />
+
+    <script>
+      const root = document.documentElement;
+
+      function setLang(lang: string) {
+        root.setAttribute("lang", lang);
+        localStorage.setItem("lang", lang);
+      }
+      document.addEventListener("click", (event) => {
+        const setBtn = (event.target as Element).closest("[data-set-lang]");
+        if (setBtn) { setLang((setBtn as HTMLElement).dataset.setLang!); return; }
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = (event.target as Element).closest("[data-nav-toggle]");
+        if (!target) return;
+        const menu = document.getElementById("mobileMenu");
+        menu?.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

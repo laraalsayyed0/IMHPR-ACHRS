@@ -1,0 +1,533 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Brazzaville)","Congo (Kinshasa)","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe","Other"];
+
+const roles = [
+  { id: "intern",  en: { name: "Intern",              desc: "Join the International Movement as an intern to gain hands-on experience in human rights research, advocacy, legal support, or communications." }, fr: { name: "Stagiaire",           desc: "Rejoignez le Mouvement International en tant que stagiaire pour acquérir une expérience pratique en recherche sur les droits humains, plaidoyer, soutien juridique ou communications." }, ar: { name: "متدرب",       desc: "انضم إلى الحركة الدولية كمتدرب واكتسب خبرة عملية في أبحاث حقوق الإنسان أو المناصرة أو الدعم القانوني أو الاتصالات." } },
+  { id: "partner", en: { name: "Partner Organisation", desc: "Formalise collaboration between your organisation and the International Movement to co-implement programmes." }, fr: { name: "Organisation partenaire", desc: "Formalisez la collaboration entre votre organisation et le Mouvement International pour co-implémenter des programmes." }, ar: { name: "منظمة شريكة", desc: "أضفِ الطابع الرسمي على التعاون بين منظمتك والحركة الدولية لتنفيذ برامج مشتركة." } },
+];
+---
+
+<Layout title="Apply — IMHPR">
+  <Nav />
+
+  <section class="bg-ink px-8 py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="mb-4 text-xs font-bold tracking-widest uppercase text-paper/40">
+        <span class="en">Get Involved</span>
+        <span class="fr">S'impliquer</span>
+        <span class="ar">انضم إلينا</span>
+      </p>
+      <h1 class="text-[12vw] md:text-[9vw] font-black leading-none tracking-tighter text-paper uppercase">
+        <span class="en block">Apply to Join<br>the Movement</span>
+        <span class="fr block">Rejoindre<br>le Mouvement</span>
+        <span class="ar block text-[8vw]">تقدم للانضمام<br>إلى الحركة</span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="bg-paper px-8 py-24">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-16 lg:grid-cols-[1fr_1.6fr]">
+
+        <!-- Role selector -->
+        <div>
+          <h3 class="mb-0 text-xs font-bold tracking-widest uppercase text-muted">
+            <span class="en">How Would You Like to Contribute?</span>
+            <span class="fr">Comment souhaitez-vous contribuer ?</span>
+            <span class="ar">كيف تودّ المساهمة؟</span>
+          </h3>
+          <div class="space-y-0 mb-8" id="roleList">
+            {roles.map((r, i) => (
+              <label
+                class:list={[
+                  "role-card flex cursor-pointer gap-4 border-t border-line py-5 transition-colors",
+                  i === 0 ? "text-ink" : "text-muted hover:text-ink",
+                ]}
+                data-role={r.id}
+              >
+                <input type="radio" name="role" value={r.id} checked={i === 0} class="mt-1 accent-ink shrink-0" />
+                <div>
+                  <p class="font-bold text-sm">
+                    <span class="en">{r.en.name}</span>
+                    <span class="fr">{r.fr.name}</span>
+                    <span class="ar">{r.ar.name}</span>
+                  </p>
+                  <p class="mt-1 text-xs leading-relaxed">
+                    <span class="en">{r.en.desc}</span>
+                    <span class="fr">{r.fr.desc}</span>
+                    <span class="ar">{r.ar.desc}</span>
+                  </p>
+                </div>
+              </label>
+            ))}
+            <div class="border-t border-line"></div>
+          </div>
+
+          <div class="border-t-2 border-ink pt-5 text-xs text-muted">
+            <p class="font-bold text-ink mb-1">
+              <span class="en">Questions?</span>
+              <span class="fr">Des questions ?</span>
+              <span class="ar">لديك استفسار؟</span>
+            </p>
+            <p>
+              <span class="en"><a href="mailto:president@imhp-rights.org" class="text-ink hover:underline">president@imhp-rights.org</a> or <span dir="ltr">+41 76 29 55 181</span></span>
+              <span class="fr"><a href="mailto:president@imhp-rights.org" class="text-ink hover:underline">president@imhp-rights.org</a> ou <span dir="ltr">+41 76 29 55 181</span></span>
+              <span class="ar"><a href="mailto:president@imhp-rights.org" class="text-ink hover:underline">president@imhp-rights.org</a> أو <span dir="ltr">+41 76 29 55 181</span></span>
+            </p>
+          </div>
+
+          <div class="mt-8">
+            <img
+              src="/images/udhr.webp"
+              alt="The Universal Declaration of Human Rights"
+              class="w-full object-cover block"
+              style="height: 240px; object-position: center 40%; filter: grayscale(100%) contrast(1.05);"
+            />
+
+            <img
+              src="/images/silhouettes.png"
+              alt="Silhouettes of people walking"
+              class="w-full object-cover block"
+              style="height: 220px; object-position: center 75%; filter: grayscale(100%) contrast(1.05);"
+            />
+          </div>
+        </div>
+
+        <!-- Forms -->
+        <div>
+          <div id="appSuccess" class="hidden border border-line p-10 text-center">
+            <p class="mb-4 text-5xl">✅</p>
+            <h3 class="mb-3 text-2xl font-black tracking-tight text-ink">
+              <span class="en">Application Received.</span>
+              <span class="fr">Candidature reçue.</span>
+              <span class="ar">تم استلام طلبك.</span>
+            </h3>
+            <p class="text-sm text-muted leading-relaxed">
+              <span class="en">Thank you for applying to join the International Movement. Our team will review your application and be in touch within 10 business days.</span>
+              <span class="fr">Merci d'avoir postulé pour rejoindre le Mouvement International. Notre équipe examinera votre candidature et vous contactera dans les 10 jours ouvrables.</span>
+              <span class="ar">شكراً لتقدّمك للانضمام إلى IMHPR. سيراجع فريقنا طلبك ويتواصل معك خلال 10 أيام عمل.</span>
+            </p>
+          </div>
+
+          <!-- Intern form -->
+          <div id="formIntern">
+            <h3 class="mb-8 text-xs font-bold tracking-widest uppercase text-muted">
+              <span class="en">Intern Application</span>
+              <span class="fr">Candidature Stagiaire</span>
+              <span class="ar">طلب تدريب</span>
+            </h3>
+            <form class="app-form space-y-5" novalidate>
+              <!-- Inline error banners -->
+              <div class="form-error hidden form-error-box px-4 py-3 text-sm">
+                <span class="en">Please fill in all required fields marked with *</span>
+                <span class="fr">Veuillez remplir tous les champs obligatoires marqués d'un *</span>
+                <span class="ar">يرجى ملء جميع الحقول المطلوبة المعلّمة بـ *</span>
+              </div>
+              <div class="form-error-format hidden form-error-box px-4 py-3 text-sm"></div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">First Name *</span><span class="fr">Prénom *</span><span class="ar">الاسم الأول *</span>
+                  <input type="text" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                </label>
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Last Name *</span><span class="fr">Nom *</span><span class="ar">اسم العائلة *</span>
+                  <input type="text" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                </label>
+              </div>
+              <div class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Email Address *</span><span class="fr">Adresse e-mail *</span><span class="ar">البريد الإلكتروني *</span>
+                <div class="mt-2 flex gap-2">
+                  <input type="email" required placeholder="you@example.com" class="email-field w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                  <button type="button" class="send-otp-btn shrink-0 border border-ink bg-ink px-4 py-3 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors whitespace-nowrap">
+                    <span class="en">Send Code</span><span class="fr">Envoyer</span><span class="ar">أرسل الرمز</span>
+                  </button>
+                </div>
+                <div class="otp-row hidden mt-2 flex gap-2 items-center">
+                  <input type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code" class="otp-input w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none tracking-widest" dir="ltr" />
+                  <button type="button" class="verify-otp-btn shrink-0 border border-ink bg-ink px-4 py-3 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors whitespace-nowrap">
+                    <span class="en">Verify</span><span class="fr">Vérifier</span><span class="ar">تحقق</span>
+                  </button>
+                </div>
+                <p class="otp-status mt-1 text-xs hidden"></p>
+                <input type="hidden" class="email-verified" value="" />
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Phone</span><span class="fr">Téléphone</span><span class="ar">الهاتف</span>
+                  <input type="tel" dir="ltr" placeholder="+1 234 567 8900" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                </label>
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Country *</span><span class="fr">Pays *</span><span class="ar">البلد *</span>
+                  <select required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none">
+                    <option value="">Select…</option>
+                    {countries.map(c => <option>{c}</option>)}
+                  </select>
+                </label>
+              </div>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Current Academic Institution</span><span class="fr">Établissement académique actuel</span><span class="ar">المؤسسة الأكاديمية الحالية</span>
+                <input type="text" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+              </label>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Area of Interest</span><span class="fr">Domaine d'intérêt</span><span class="ar">مجال الاهتمام</span>
+                <select class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none">
+                  <option value="">Select…</option>
+                  {["Human Rights Law","International Law","Advocacy & Policy","Research & Documentation","Communications & Media","Education & Training","Other"].map(e => <option>{e}</option>)}
+                </select>
+              </label>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Motivation & Relevant Experience *</span><span class="fr">Motivation & Expérience pertinente *</span><span class="ar">الدافع والخبرة ذات الصلة *</span>
+                <textarea rows="5" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none resize-none"></textarea>
+              </label>
+              <div class="flex items-start gap-3">
+                <input type="checkbox" required class="mt-1 accent-ink shrink-0" />
+                <span class="text-xs text-muted leading-relaxed">
+                  <span class="en">I consent to the International Movement storing and processing my information for the purpose of this application.</span>
+                  <span class="fr">Je consens à ce que le Mouvement International stocke et traite mes informations aux fins de cette candidature.</span>
+                  <span class="ar">أوافق على قيام الحركة الدولية بتخزين معلوماتي ومعالجتها لأغراض هذا الطلب.</span>
+                </span>
+              </div>
+              <button type="submit" class="w-full border border-ink bg-ink py-4 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors">
+                <span class="en">Submit Application</span>
+                <span class="fr">Soumettre la candidature</span>
+                <span class="ar">تقديم الطلب</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Partner Organisation form -->
+          <div id="formPartner" class="hidden">
+            <h3 class="mb-8 text-xs font-bold tracking-widest uppercase text-muted">
+              <span class="en">Partner Organisation Application</span>
+              <span class="fr">Candidature Organisation Partenaire</span>
+              <span class="ar">طلب منظمة شريكة</span>
+            </h3>
+            <form class="app-form space-y-5" novalidate>
+              <!-- Inline error banners -->
+              <div class="form-error hidden form-error-box px-4 py-3 text-sm">
+                <span class="en">Please fill in all required fields marked with *</span>
+                <span class="fr">Veuillez remplir tous les champs obligatoires marqués d'un *</span>
+                <span class="ar">يرجى ملء جميع الحقول المطلوبة المعلّمة بـ *</span>
+              </div>
+              <div class="form-error-format hidden form-error-box px-4 py-3 text-sm"></div>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Organisation Name *</span><span class="fr">Nom de l'organisation *</span><span class="ar">اسم المنظمة *</span>
+                <input type="text" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+              </label>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Country of Registration *</span><span class="fr">Pays d'enregistrement *</span><span class="ar">بلد التسجيل *</span>
+                  <select required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none">
+                    <option value="">Select…</option>
+                    {countries.map(c => <option>{c}</option>)}
+                  </select>
+                </label>
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Year Founded</span><span class="fr">Année de fondation</span><span class="ar">سنة التأسيس</span>
+                  <input type="number" min="1900" max="2025" placeholder="e.g. 2010" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                </label>
+              </div>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Organisation Website</span><span class="fr">Site web de l'organisation</span><span class="ar">الموقع الإلكتروني</span>
+                <input type="url" placeholder="https://example.org" dir="ltr" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+              </label>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Contact Person Name *</span><span class="fr">Nom du contact *</span><span class="ar">اسم جهة الاتصال *</span>
+                <input type="text" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+              </label>
+              <div class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Contact Email *</span><span class="fr">Adresse e-mail de contact *</span><span class="ar">البريد الإلكتروني للتواصل *</span>
+                <div class="mt-2 flex gap-2">
+                  <input type="email" required placeholder="contact@organisation.org" class="email-field w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                  <button type="button" class="send-otp-btn shrink-0 border border-ink bg-ink px-4 py-3 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors whitespace-nowrap">
+                    <span class="en">Send Code</span><span class="fr">Envoyer</span><span class="ar">أرسل الرمز</span>
+                  </button>
+                </div>
+                <div class="otp-row hidden mt-2 flex gap-2 items-center">
+                  <input type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code" class="otp-input w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none tracking-widest" dir="ltr" />
+                  <button type="button" class="verify-otp-btn shrink-0 border border-ink bg-ink px-4 py-3 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors whitespace-nowrap">
+                    <span class="en">Verify</span><span class="fr">Vérifier</span><span class="ar">تحقق</span>
+                  </button>
+                </div>
+                <p class="otp-status mt-1 text-xs hidden"></p>
+                <input type="hidden" class="email-verified" value="" />
+              </div>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Area of Work</span><span class="fr">Domaine de travail</span><span class="ar">مجال العمل</span>
+                <input type="text" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+              </label>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Why Partner with the International Movement? *</span><span class="fr">Pourquoi un partenariat avec le Mouvement International ? *</span><span class="ar">لماذا الشراكة مع الحركة الدولية؟ *</span>
+                <textarea rows="5" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none resize-none"></textarea>
+              </label>
+              <div class="flex items-start gap-3">
+                <input type="checkbox" required class="mt-1 accent-ink shrink-0" />
+                <span class="text-xs text-muted leading-relaxed">
+                  <span class="en">I confirm this information is accurate and consent to the International Movement processing it for the purpose of this partnership application.</span>
+                  <span class="fr">Je confirme l'exactitude de ces informations et consens à ce que le Mouvement International les traite aux fins de cette demande de partenariat.</span>
+                  <span class="ar">أؤكد دقة هذه المعلومات وأوافق على قيام الحركة الدولية بمعالجتها لأغراض طلب الشراكة هذا.</span>
+                </span>
+              </div>
+              <button type="submit" class="w-full border border-ink bg-ink py-4 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors">
+                <span class="en">Submit Application</span>
+                <span class="fr">Soumettre la candidature</span>
+                <span class="ar">تقديم الطلب</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  const formIntern  = document.getElementById("formIntern");
+  const formPartner = document.getElementById("formPartner");
+  const appSuccess  = document.getElementById("appSuccess");
+
+  function switchForm(role: string) {
+    formIntern?.classList.toggle("hidden", role !== "intern");
+    formPartner?.classList.toggle("hidden", role !== "partner");
+  }
+
+  function activateRole(role: string) {
+    document.querySelectorAll(".role-card").forEach((c) => {
+      c.classList.remove("text-ink");
+      c.classList.add("text-muted", "hover:text-ink");
+    });
+    const target = document.querySelector<HTMLElement>(`.role-card[data-role="${role}"]`);
+    if (target) {
+      target.classList.add("text-ink");
+      target.classList.remove("text-muted");
+      (target.querySelector("input[type=radio]") as HTMLInputElement).checked = true;
+    }
+    switchForm(role);
+  }
+
+  // Pre-select role from URL param (e.g. ?role=partner)
+  const urlRole = new URLSearchParams(location.search).get("role");
+  if (urlRole) activateRole(urlRole);
+
+  document.querySelectorAll(".role-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const role = (card as HTMLElement).dataset.role ?? "intern";
+      activateRole(role);
+    });
+  });
+
+  const isAr = () => document.documentElement.getAttribute("lang") === "ar";
+
+  // OTP flow — wire up each form independently
+  document.querySelectorAll<HTMLElement>(".app-form").forEach((form) => {
+    const emailField    = form.querySelector<HTMLInputElement>(".email-field");
+    const sendBtn       = form.querySelector<HTMLButtonElement>(".send-otp-btn");
+    const otpRow        = form.querySelector<HTMLElement>(".otp-row");
+    const otpInput      = form.querySelector<HTMLInputElement>(".otp-input");
+    const verifyBtn     = form.querySelector<HTMLButtonElement>(".verify-otp-btn");
+    const statusEl      = form.querySelector<HTMLElement>(".otp-status");
+    const verifiedField = form.querySelector<HTMLInputElement>(".email-verified");
+    if (!emailField || !sendBtn) return;
+
+    function setStatus(msg: string, color: "red" | "green" | "gray") {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.className = `otp-status mt-1 text-xs ${color === "red" ? "text-[var(--color-error)]" : color === "green" ? "text-green-700" : "text-muted"}`;
+      statusEl.classList.remove("hidden");
+    }
+
+    sendBtn.addEventListener("click", async () => {
+      const email = emailField.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        emailField.classList.add("field-error");
+        setStatus(isAr() ? "أدخل بريداً إلكترونياً صالحاً أولاً." : "Enter a valid email first.", "red");
+        return;
+      }
+      emailField.classList.remove("field-error");
+      sendBtn.disabled = true;
+      sendBtn.textContent = isAr() ? "جارٍ الإرسال…" : "Sending…";
+
+      const res = await fetch("/api/send-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = isAr()
+        ? '<span class="en">Send Code</span><span class="ar">أرسل الرمز</span>'
+        : '<span class="en">Send Code</span><span class="ar">أرسل الرمز</span>';
+
+      if (res.ok) {
+        otpRow?.classList.remove("hidden");
+        emailField.readOnly = true;
+        setStatus(isAr() ? "تم إرسال رمز مكوّن من 6 أرقام إلى بريدك." : "A 6-digit code was sent to your email.", "gray");
+      } else {
+        setStatus(isAr() ? "فشل الإرسال. حاول مجدداً." : "Failed to send. Please try again.", "red");
+      }
+    });
+
+    verifyBtn?.addEventListener("click", async () => {
+      const email = emailField.value.trim();
+      const code  = otpInput?.value.trim() ?? "";
+      if (!code) { setStatus(isAr() ? "أدخل الرمز." : "Enter the code.", "red"); return; }
+
+      verifyBtn.disabled = true;
+      verifyBtn.textContent = isAr() ? "جارٍ التحقق…" : "Checking…";
+
+      const res = await fetch("/api/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code }),
+      });
+
+      verifyBtn.disabled = false;
+      verifyBtn.innerHTML = isAr()
+        ? '<span class="en">Verify</span><span class="ar">تحقق</span>'
+        : '<span class="en">Verify</span><span class="ar">تحقق</span>';
+
+      if (res.ok) {
+        if (verifiedField) verifiedField.value = email;
+        otpRow?.classList.add("hidden");
+        sendBtn.classList.add("hidden");
+        emailField.readOnly = true;
+        setStatus(isAr() ? "✓ تم التحقق من البريد الإلكتروني" : "✓ Email verified", "green");
+      } else {
+        const { message } = await res.json();
+        setStatus(message ?? (isAr() ? "رمز غير صحيح." : "Incorrect code."), "red");
+      }
+    });
+  });
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_RE = /^\+?[\d\s\-().]{7,20}$/;
+
+  document.querySelectorAll(".app-form").forEach((form) => {
+    const errorBanner       = form.querySelector<HTMLElement>(".form-error");
+    const errorFormatBanner = form.querySelector<HTMLElement>(".form-error-format");
+
+    // Clear field errors on input
+    form.querySelectorAll<HTMLElement>("input,select,textarea").forEach((field) => {
+      field.addEventListener("input", () => {
+        field.classList.remove("field-error");
+        if (!form.querySelectorAll(".field-error").length) {
+          errorBanner?.classList.add("hidden");
+          errorFormatBanner?.classList.add("hidden");
+        }
+      });
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorBanner?.classList.add("hidden");
+      errorFormatBanner?.classList.add("hidden");
+
+      // 1. Required fields check
+      const required = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("[required]");
+      let hasEmpty = false;
+      required.forEach((field) => {
+        const empty = field.type === "checkbox" ? !field.checked : !field.value.trim();
+        field.classList.toggle("field-error", empty);
+        if (empty) hasEmpty = true;
+      });
+
+      if (hasEmpty) {
+        errorBanner?.classList.remove("hidden");
+        errorBanner?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      // 2. Format checks
+      const formatErrors: string[] = [];
+
+      const emailField    = form.querySelector<HTMLInputElement>(".email-field");
+      const verifiedField = form.querySelector<HTMLInputElement>(".email-verified");
+      if (emailField?.value && !EMAIL_RE.test(emailField.value.trim())) {
+        emailField.classList.add("field-error");
+        formatErrors.push(isAr()
+          ? "البريد الإلكتروني غير صالح — تأكد من أنه يحتوي على @ ونطاق صحيح."
+          : "Invalid email address — make sure it contains @ and a valid domain.");
+      } else if (emailField?.value && verifiedField?.value !== emailField.value.trim()) {
+        emailField.classList.add("field-error");
+        formatErrors.push(isAr()
+          ? "يرجى التحقق من بريدك الإلكتروني باستخدام الرمز المرسل قبل الإرسال."
+          : "Please verify your email address with the sent code before submitting.");
+      }
+
+      const phoneField = form.querySelector<HTMLInputElement>("input[type=tel]");
+      if (phoneField?.value && !PHONE_RE.test(phoneField.value.trim())) {
+        phoneField.classList.add("field-error");
+        formatErrors.push(isAr()
+          ? "رقم الهاتف غير صالح — استخدم أرقاماً فقط مع رمز الدولة الاختياري (مثال: +962 …)."
+          : "Invalid phone number — use digits only, with an optional country code (e.g. +962 …).");
+      }
+
+      if (formatErrors.length) {
+        if (errorFormatBanner) {
+          errorFormatBanner.textContent = formatErrors.join(" ");
+          errorFormatBanner.classList.remove("hidden");
+          errorFormatBanner.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
+
+      // Collect payload
+      const activeIntern = !formIntern?.classList.contains("hidden");
+      const inputs = (form as HTMLFormElement).querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("input:not([type=radio]):not([type=checkbox]):not(.email-verified):not(.otp-input), select, textarea");
+      const payload: Record<string, unknown> = { type: activeIntern ? "intern" : "partner" };
+
+      if (activeIntern) {
+        const vals = [...inputs].map(i => i.value.trim());
+        payload.firstName    = vals[0] ?? "";
+        payload.lastName     = vals[1] ?? "";
+        payload.email        = (form.querySelector<HTMLInputElement>(".email-field"))?.value.trim() ?? "";
+        payload.phone        = vals[3] ?? "";
+        payload.country      = vals[4] ?? "";
+        payload.institution  = vals[5] ?? "";
+        payload.areaOfInterest = vals[6] ?? "";
+        payload.motivation   = vals[7] ?? "";
+      } else {
+        payload.orgName       = (form.querySelector<HTMLInputElement>("input[type=text]"))?.value.trim() ?? "";
+        const selects         = [...form.querySelectorAll<HTMLSelectElement>("select")];
+        payload.country       = selects[0]?.value ?? "";
+        payload.yearFounded   = Number((form.querySelector<HTMLInputElement>("input[type=number]"))?.value) || undefined;
+        payload.website       = (form.querySelector<HTMLInputElement>("input[type=url]"))?.value.trim() || undefined;
+        const textInputs      = [...form.querySelectorAll<HTMLInputElement>("input[type=text]")];
+        payload.contactPerson = textInputs[1]?.value.trim() ?? "";
+        payload.contactEmail  = (form.querySelector<HTMLInputElement>(".email-field"))?.value.trim() ?? "";
+        payload.areaOfWork    = textInputs[2]?.value.trim() ?? "";
+        payload.whyPartner    = (form.querySelector<HTMLTextAreaElement>("textarea"))?.value.trim() ?? "";
+      }
+
+      const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = isAr() ? "جارٍ الإرسال…" : "Submitting…"; }
+
+      const res = await fetch("/api/submit-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = isAr() ? '<span class="en">Submit Application</span><span class="ar">تقديم الطلب</span>' : '<span class="en">Submit Application</span><span class="ar">تقديم الطلب</span>'; }
+
+      if (!res.ok) {
+        if (errorFormatBanner) {
+          errorFormatBanner.textContent = isAr() ? "حدث خطأ أثناء الإرسال. حاول مجدداً." : "Submission failed. Please try again.";
+          errorFormatBanner.classList.remove("hidden");
+        }
+        return;
+      }
+
+      formIntern?.classList.add("hidden");
+      formPartner?.classList.add("hidden");
+      appSuccess?.classList.remove("hidden");
+    });
+  });
+</script>

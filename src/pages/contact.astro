@@ -1,0 +1,186 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const contactItems = [
+  { label: { en: "Europe Office", ar: "مكتب أوروبا", fr: "Bureau Europe" }, detail: "+41 76 29 55 181", copy: "+41762955181", href: "tel:+41762955181" },
+  { label: { en: "Jordan Office", ar: "مكتب الأردن", fr: "Bureau Jordanie" }, detail: "+962-79-5151590", copy: "+96279-5151590", href: "tel:+96279-5151590" },
+  { label: { en: "Email", ar: "البريد الإلكتروني", fr: "E-mail" }, detail: "president@imhp-rights.org", copy: "president@imhp-rights.org", href: "mailto:president@imhp-rights.org" },
+];
+---
+
+<Layout title="Contact — IMHPR">
+  <Nav />
+
+  <section class="bg-ink px-8 py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="mb-4 text-xs font-bold tracking-widest uppercase text-paper/40">
+        <span class="en">Get in Touch</span>
+        <span class="fr">Prendre contact</span>
+        <span class="ar">تواصل معنا</span>
+      </p>
+      <h1 class="text-[12vw] md:text-[9vw] font-black leading-none tracking-tighter text-paper uppercase">
+        <span class="en block">Contact<br>Us</span>
+        <span class="fr block">Nous<br>contacter</span>
+        <span class="ar block text-[8vw]">اتصل<br>بنا</span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="bg-paper px-8 py-24">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid lg:grid-cols-[1fr_1.5fr] items-center">
+
+        <!-- Contact info — navy card with world map bg -->
+        <div class="bg-ink px-10 py-16 flex flex-col justify-center gap-12 relative z-0 lg:pr-16 overflow-hidden h-[520px]" style="box-shadow: 0 30px 80px rgba(0,0,0,0.35), 8px 0 40px rgba(0,0,0,0.25);">
+          <!-- Real world map rendered by D3 -->
+          <svg id="contactMap" class="absolute inset-0 w-full h-full" aria-hidden="true"></svg>
+
+          <!-- Gradient fades poles into navy background -->
+          <div class="absolute inset-0 z-[1] pointer-events-none" style="background: linear-gradient(to bottom, #0D1A2E 0%, transparent 30%, transparent 70%, #0D1A2E 100%);"></div>
+
+          <!-- Contact info on top of map -->
+          <div class="space-y-8 relative z-10">
+            {contactItems.map((item) => (
+              <div>
+                <p class="text-xs font-bold tracking-widest uppercase text-white/50 mb-1">
+                  <span class="en">{item.label.en}</span>
+                  <span class="fr">{item.label.fr}</span>
+                  <span class="ar">{item.label.ar}</span>
+                </p>
+                <a href={item.href} class="text-sm font-semibold text-white hover:text-white/80 transition-colors break-all" dir="ltr">
+                  {item.detail}
+                </a>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        <!-- Contact form — overlaps the left card via negative margin + z-index -->
+        <div class="relative z-10 lg:-ml-12 bg-paper px-10 py-12" style="box-shadow: -8px 0 16px rgba(0,0,0,0.18);">
+          <div id="contactFormWrap">
+            <h3 class="mb-8 text-xs font-bold tracking-widest uppercase text-muted">
+              <span class="en">Send a Message</span>
+              <span class="fr">Envoyer un message</span>
+              <span class="ar">أرسل رسالة</span>
+            </h3>
+            <form id="contactFormEl" class="space-y-5">
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Name *</span><span class="fr">Nom *</span><span class="ar">الاسم *</span>
+                  <input type="text" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                </label>
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Email *</span><span class="fr">E-mail *</span><span class="ar">البريد الإلكتروني *</span>
+                  <input type="email" required placeholder="you@example.com" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                </label>
+              </div>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Organisation</span><span class="fr">Organisation</span><span class="ar">المنظمة</span>
+                <input type="text" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+              </label>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Subject *</span><span class="fr">Objet *</span><span class="ar">الموضوع *</span>
+                <input type="text" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+              </label>
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Message *</span><span class="fr">Message *</span><span class="ar">الرسالة *</span>
+                <textarea rows="5" required class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none resize-none"></textarea>
+              </label>
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="cConsent" required class="mt-1 accent-ink shrink-0" />
+                <label for="cConsent" class="text-xs text-muted leading-relaxed">
+                  <span class="en">I consent to the International Movement storing my contact details to respond to this enquiry.</span>
+                  <span class="fr">Je consens à ce que le Mouvement International conserve mes coordonnées pour répondre à cette demande.</span>
+                  <span class="ar">أوافق على قيام الحركة الدولية بحفظ بيانات الاتصال الخاصة بي للرد على هذا الاستفسار.</span>
+                </label>
+              </div>
+              <button type="submit" class="w-full border border-ink bg-ink py-4 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors">
+                <span class="en">Send Message</span>
+                <span class="fr">Envoyer le message</span>
+                <span class="ar">إرسال الرسالة</span>
+              </button>
+            </form>
+          </div>
+
+          <div id="contactOk" class="hidden border border-line p-10 text-center">
+            <p class="mb-4 text-5xl">📬</p>
+            <h3 class="mb-3 text-2xl font-black tracking-tight text-ink">
+              <span class="en">Message Sent.</span>
+              <span class="fr">Message envoyé.</span>
+              <span class="ar">تم إرسال رسالتك.</span>
+            </h3>
+            <p class="text-sm text-muted leading-relaxed">
+              <span class="en">Thank you for reaching out to the International Movement. We will review your message and reply as soon as possible.</span>
+              <span class="fr">Merci de contacter le Mouvement International. Nous examinerons votre message et répondrons dans les meilleurs délais.</span>
+              <span class="ar">شكراً لتواصلك مع الحركة الدولية. سنراجع رسالتك ونردّ في أقرب وقت ممكن.</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script type="module">
+(async () => {
+  const d3 = await import("https://cdn.jsdelivr.net/npm/d3@7/+esm");
+  const topojson = await import("https://cdn.jsdelivr.net/npm/topojson-client@3/+esm");
+
+  const svg = document.getElementById("contactMap");
+  if (!svg) return;
+
+  const world = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(r => r.json());
+  const land = topojson.feature(world, world.objects.land);
+
+  const S = 600, R = 420;
+  svg.setAttribute("viewBox", `0 0 ${S} ${S}`);
+  svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
+
+  const projection = d3.geoOrthographic()
+    .scale(R)
+    .translate([S / 2, S / 2])
+    .clipAngle(90)
+    .rotate([0, -20]);
+
+  const path = d3.geoPath().projection(projection);
+  const sel = d3.select(svg);
+
+  // Ocean
+  sel.append("circle").attr("cx", S/2).attr("cy", S/2).attr("r", R).attr("fill", "#0D1A2E");
+  // Land
+  const landPath = sel.append("path").datum(land).attr("fill", "#1A2B42");
+  d3.timer(elapsed => {
+    projection.rotate([elapsed / 120, -20]);
+    landPath.attr("d", path);
+  });
+})();
+</script>
+
+<script>
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = (btn as HTMLElement).dataset.copy || "";
+      const isAr = document.documentElement.lang === "ar";
+      try {
+        await navigator.clipboard.writeText(text);
+        (btn as HTMLElement).textContent = isAr ? "✓ تم النسخ" : "✓ copied";
+        setTimeout(() => {
+          btn.innerHTML = isAr
+            ? `<span class="ar">نسخ</span><span class="en" style="display:none">copy</span>`
+            : `<span class="en">copy</span><span class="ar" style="display:none">نسخ</span>`;
+        }, 2000);
+      } catch { /* silent */ }
+    });
+  });
+  document.getElementById("contactFormEl")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    document.getElementById("contactFormWrap")?.classList.add("hidden");
+    document.getElementById("contactOk")?.classList.remove("hidden");
+  });
+</script>

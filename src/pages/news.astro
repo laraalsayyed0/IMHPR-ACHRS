@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { getNewsArticles, getFeaturedArticle } from "../lib/sanity";
+
+// Fetch from Sanity; fall back to empty arrays if env vars not set yet
+let articles = [];
+let featured = null;
+
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+if (projectId && projectId !== "your_project_id_here") {
+  [articles, featured] = await Promise.all([getNewsArticles(), getFeaturedArticle()]);
+}
+---
+
+<Layout title="News & Reports — IMHPR">
+  <Nav />
+
+  <section class="bg-ink px-8 py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="mb-4 text-xs font-bold tracking-widest uppercase text-paper/40">
+        <span class="en">Latest Updates</span>
+        <span class="fr">Dernières actualités</span>
+        <span class="ar">آخر التحديثات</span>
+      </p>
+      <h1 class="text-[12vw] md:text-[9vw] font-black leading-none tracking-tighter text-paper uppercase">
+        <span class="en block">News &<br>Reports</span>
+        <span class="fr block">Actualités &<br>Rapports</span>
+        <span class="ar block text-[8vw]">الأخبار<br>والتقارير</span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="bg-paper px-8 py-24">
+    <div class="mx-auto max-w-7xl">
+
+      {/* Featured article */}
+      {featured && (
+        <div class="mb-16 border-t-4 border-ink pt-8">
+          <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-12">
+            <div class="flex-1">
+              <p class="mb-3 text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Featured Report · {featured.publishedAt}</span>
+                <span class="ar">تقرير مميز · {featured.publishedAt}</span>
+              </p>
+              <h2 class="mb-4 text-3xl font-black leading-tight tracking-tight text-ink">
+                <span class="en">{featured.title}</span>
+                <span class="ar">{featured.titleAr}</span>
+              </h2>
+              <p class="text-sm leading-relaxed text-muted max-w-xl">
+                <span class="en">{featured.body}</span>
+                <span class="ar">{featured.bodyAr}</span>
+              </p>
+            </div>
+            <span class="text-7xl opacity-20">📋</span>
+          </div>
+        </div>
+      )}
+
+      {/* Articles list */}
+      {articles.length > 0 ? (
+        <>
+          <h2 class="mb-0 text-xs font-bold tracking-widest uppercase text-muted">
+            <span class="en">Recent News</span>
+            <span class="fr">Actualités récentes</span>
+            <span class="ar">أحدث الأخبار</span>
+          </h2>
+          <div class="space-y-0">
+            {articles.map((a) => (
+              <article class="border-t border-line py-7 flex flex-col gap-3 md:flex-row md:items-start md:gap-10">
+                <div class="flex items-center gap-4 md:w-48 md:flex-col md:items-start md:gap-1 shrink-0">
+                  <span class="text-xs font-bold tracking-widest uppercase text-muted">{a.publishedAt}</span>
+                  <span class="rounded-sm bg-paper-dim px-2 py-0.5 text-xs font-bold tracking-wide text-muted">
+                    <span class="en">{a.tag}</span>
+                    <span class="ar">{a.tagAr}</span>
+                  </span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="mb-2 text-base font-bold leading-snug text-ink">
+                    <span class="en">{a.title}</span>
+                    <span class="ar">{a.titleAr}</span>
+                  </h3>
+                  <p class="text-sm leading-relaxed text-muted">
+                    <span class="en">{a.body}</span>
+                    <span class="ar">{a.bodyAr}</span>
+                  </p>
+                </div>
+              </article>
+            ))}
+            <div class="border-t border-line"></div>
+          </div>
+        </>
+      ) : (
+        <div class="border-t border-line py-20 text-center">
+          <p class="text-sm text-muted">
+            <span class="en">No articles published yet.</span>
+            <span class="fr">Aucun article publié pour l'instant.</span>
+            <span class="ar">لم يتم نشر أي مقالات بعد.</span>
+          </p>
+        </div>
+      )}
+
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

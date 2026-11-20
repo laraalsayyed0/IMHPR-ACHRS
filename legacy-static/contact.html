@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — IMHP Rights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="nav-brand-text"><span class="en">IMHP Rights</span><span class="ar">IMHP للحقوق</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span class="en">Home</span><span class="ar">الرئيسية</span></a></li>
+        <li><a href="about.html"><span class="en">About Us</span><span class="ar">من نحن</span></a></li>
+        <li><a href="news.html"><span class="en">News</span><span class="ar">الأخبار</span></a></li>
+        <li><a href="events.html"><span class="en">Events</span><span class="ar">الفعاليات</span></a></li>
+        <li><a href="application.html"><span class="en">Apply</span><span class="ar">تقديم طلب</span></a></li>
+        <li><a href="contact.html" aria-current="page"><span class="en">Contact</span><span class="ar">اتصل بنا</span></a></li>
+        <li>
+          <button class="lang-toggle" id="langToggle" type="button">
+            <span class="en">العربية</span><span class="ar">English</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="section-container">
+      <h1><span class="en">Contact IMHP Rights</span><span class="ar">تواصل مع IMHP للحقوق</span></h1>
+      <p>
+        <span class="en">We welcome enquiries from individuals, organisations, journalists, and supporters. Our team aims to respond within two business days.</span>
+        <span class="ar">نرحّب بالاستفسارات من الأفراد والمنظمات والصحفيين والمؤيدين. يسعى فريقنا إلى الرد خلال يومي عمل.</span>
+      </p>
+    </div>
+  </header>
+
+  <section class="section" id="contact">
+    <div class="section-container">
+      <div class="contact-grid">
+        <!-- Contact info -->
+        <div class="contact-info">
+          <p>
+            <strong><span class="en">Europe Office (Switzerland)</span><span class="ar">مكتب أوروبا (سويسرا)</span></strong>
+            <span dir="ltr">+41 76 29 55 181</span>
+            <br>
+            <button class="copy-btn" onclick="copyText('+41762955181',this)">
+              <span class="en">Copy</span><span class="ar">نسخ</span>
+            </button>
+          </p>
+          <p>
+            <strong><span class="en">Middle East Office (Jordan)</span><span class="ar">مكتب الشرق الأوسط (الأردن)</span></strong>
+            <span dir="ltr">+962-79-5151590</span>
+            <br>
+            <button class="copy-btn" onclick="copyText('+96279-5151590',this)">
+              <span class="en">Copy</span><span class="ar">نسخ</span>
+            </button>
+          </p>
+          <p>
+            <strong><span class="en">Email</span><span class="ar">البريد الإلكتروني</span></strong>
+            <a href="mailto:president@imhp-rights.org">president@imhp-rights.org</a>
+            <br>
+            <button class="copy-btn" onclick="copyText('president@imhp-rights.org',this)">
+              <span class="en">Copy address</span><span class="ar">نسخ العنوان</span>
+            </button>
+          </p>
+          <p>
+            <strong><span class="en">Response Times</span><span class="ar">مواعيد الرد</span></strong>
+            <span class="en">General enquiries: 2–3 business days. Urgent matters: mark your subject line URGENT for same-day attention.</span>
+            <span class="ar">الاستفسارات العامة: 2–3 أيام عمل. الأمور العاجلة: أضف كلمة URGENT في سطر الموضوع للحصول على رد في اليوم نفسه.</span>
+          </p>
+          <p>
+            <strong><span class="en">Media Enquiries</span><span class="ar">استفسارات الإعلام</span></strong>
+            <span class="en">For press and interview requests, please include your publication, deadline, and topic.</span>
+            <span class="ar">لطلبات الصحافة والمقابلات، يرجى تضمين اسم المنشور والموعد النهائي والموضوع.</span>
+          </p>
+        </div>
+
+        <!-- Contact form -->
+        <div>
+          <div id="contactFormWrap">
+            <h3 style="color:var(--navy);font-size:1.15rem;font-weight:700;margin-bottom:1.25rem">
+              <span class="en">Send a Message</span><span class="ar">أرسل رسالة</span>
+            </h3>
+            <form class="contact-form" onsubmit="submitContact(event)">
+              <div class="form-row">
+                <label>
+                  <span class="en">Name *</span><span class="ar">الاسم *</span>
+                  <input type="text" id="cName" required>
+                </label>
+                <label>
+                  <span class="en">Email *</span><span class="ar">البريد الإلكتروني *</span>
+                  <input type="email" id="cEmail" required placeholder="you@example.com">
+                </label>
+              </div>
+              <label>
+                <span class="en">Organisation (optional)</span><span class="ar">المنظمة (اختياري)</span>
+                <input type="text" id="cOrg">
+              </label>
+              <label>
+                <span class="en">Subject *</span><span class="ar">الموضوع *</span>
+                <select id="cSubject" required>
+                  <option value=""><span class="en">Select a topic…</span></option>
+                  <option><span class="en">General Enquiry</span></option>
+                  <option>Membership &amp; Volunteering</option>
+                  <option>Partnership Proposal</option>
+                  <option>Donation &amp; Funding</option>
+                  <option>Media &amp; Press</option>
+                  <option>Urgent Rights Situation</option>
+                  <option>Events &amp; Registration</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                <span class="en">Message *</span><span class="ar">الرسالة *</span>
+                <textarea id="cMsg" rows="5" required
+                  placeholder="Please describe your enquiry…"></textarea>
+              </label>
+              <div class="consent-row">
+                <input type="checkbox" id="cConsent" required>
+                <label for="cConsent" style="font-weight:400">
+                  <span class="en">I consent to IMHP Rights storing my contact details to respond to this enquiry.</span>
+                  <span class="ar">أوافق على قيام IMHP للحقوق بحفظ بيانات الاتصال الخاصة بي للرد على هذا الاستفسار.</span>
+                </label>
+              </div>
+              <button type="submit" class="btn-submit">
+                <span class="en">Send</span><span class="ar">إرسال</span>
+              </button>
+            </form>
+          </div>
+          <div class="success-box" id="contactOk" hidden>
+            <div class="success-icon">📬</div>
+            <h3><span class="en">Message Sent!</span><span class="ar">تم إرسال رسالتك!</span></h3>
+            <p>
+              <span class="en">Thank you for reaching out to IMHP Rights. We will review your message and reply as soon as possible.</span>
+              <span class="ar">شكراً لتواصلك مع IMHP للحقوق. سنراجع رسالتك ونردّ في أقرب وقت ممكن.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>
+      <span class="en">&copy; 2025 IMHP Rights. All rights reserved.</span>
+      <span class="ar">&copy; 2025 IMHP للحقوق. جميع الحقوق محفوظة.</span>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.getElementById('langToggle').addEventListener('click', function() {
+      var html = document.documentElement;
+      html.lang = html.lang === 'ar' ? 'en' : 'ar';
+    });
+
+    function copyText(text, btn) {
+      var isAr = document.documentElement.lang === 'ar';
+      navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = isAr ? '✓ تم النسخ' : '✓ Copied';
+        setTimeout(function(){ btn.innerHTML = isAr ? '<span class="ar">نسخ</span>' : '<span class="en">Copy</span>'; }, 2000);
+      }).catch(function() {
+        btn.textContent = isAr ? '✓ تم النسخ' : '✓ Copied';
+        setTimeout(function(){ btn.textContent = isAr ? 'نسخ' : 'Copy'; }, 2000);
+      });
+    }
+
+    function submitContact(e) {
+      e.preventDefault();
+      document.getElementById('contactFormWrap').hidden = true;
+      document.getElementById('contactOk').hidden = false;
+    }
+  </script>
+</body>
+</html>

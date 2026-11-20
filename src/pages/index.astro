@@ -1,0 +1,496 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const priorities = [
+  {
+    label: { en: "Peoples' Rights", ar: "حقوق الشعوب", fr: "Droits des peuples" },
+    body: {
+      en: "Advocating for indigenous communities, minorities, and vulnerable groups to claim their collective rights to self-determination and cultural identity.",
+      ar: "المناصرة للمجتمعات الأصلية والأقليات والفئات الهشة للمطالبة بحقوقها الجماعية في تقرير المصير والهوية الثقافية.",
+      fr: "Défendre les droits collectifs des communautés autochtones, des minorités et des groupes vulnérables à l'autodétermination et à l'identité culturelle.",
+    },
+  },
+  {
+    label: { en: "Human Rights", ar: "حقوق الإنسان", fr: "Droits humains" },
+    body: {
+      en: "Defending the full spectrum of civil, political, economic, social, and cultural rights for every individual — without exception.",
+      ar: "الدفاع عن الطيف الكامل من الحقوق المدنية والسياسية والاقتصادية والاجتماعية والثقافية لكل فرد دون استثناء.",
+      fr: "Défendre l'ensemble des droits civils, politiques, économiques, sociaux et culturels de chaque individu — sans exception.",
+    },
+  },
+  {
+    label: { en: "Social Justice", ar: "العدالة الاجتماعية", fr: "Justice sociale" },
+    body: {
+      en: "Building equitable systems that guarantee dignity, opportunity, and equal access to resources for all people regardless of origin or status.",
+      ar: "بناء أنظمة عادلة تضمن الكرامة والفرص والوصول المتساوي للموارد لجميع الناس بصرف النظر عن الأصل أو الوضع.",
+      fr: "Construire des systèmes équitables garantissant la dignité, l'égalité des chances et l'accès aux ressources pour tous, sans distinction d'origine.",
+    },
+  },
+  {
+    label: { en: "Global Solidarity", ar: "التضامن العالمي", fr: "Solidarité mondiale" },
+    body: {
+      en: "Uniting civil society organizations across borders to amplify advocacy, share knowledge, and coordinate action on shared human rights challenges.",
+      ar: "توحيد منظمات المجتمع المدني عبر الحدود لتعزيز المناصرة وتبادل المعرفة والتنسيق في مواجهة تحديات حقوق الإنسان المشتركة.",
+      fr: "Unir les organisations de la société civile par-delà les frontières pour amplifier la plaidoirie, partager les savoirs et coordonner les actions face aux défis communs.",
+    },
+  },
+];
+---
+
+<Layout title="IMHPR — Defending Human Rights Across Borders">
+  <Nav />
+
+  <!-- HERO: full dark, massive display text -->
+  <header class="relative bg-ink min-h-[40vh] flex flex-col justify-between px-8 pt-8 pb-6 overflow-hidden">
+    <div class="flex-1 flex items-center">
+      <h1
+        class="w-full text-[13vw] md:text-[11vw] font-black leading-[0.88] tracking-tighter text-paper uppercase"
+        style="word-break: keep-all;"
+      >
+        <span class="en block">Defending<br>Human Rights<br>Across Borders</span>
+        <span class="fr block">Défendre les<br>droits humains<br>aux frontières</span>
+        <span class="ar block text-[7.5vw] leading-tight" id="arHero"><span class="ar-w">الدفاع</span> <span class="ar-w">عن</span> <span class="ar-w">حقوق</span> <span class="ar-w">الإنسان</span> <span class="ar-w">عبر</span> <span class="ar-w">الحدود</span></span>
+      </h1>
+    </div>
+
+    <div class="border-t border-paper/15 pt-6 flex justify-end">
+      <div class="flex gap-6">
+        <a href="/about" class="text-sm font-bold text-paper border-b border-paper/30 pb-0.5 hover:border-paper transition-colors">
+          <span class="en">Discover Our Work →</span>
+          <span class="fr">Découvrir notre travail →</span>
+          <span class="ar">← اكتشف عملنا</span>
+        </a>
+        <a href="#donate" class="text-sm font-bold text-paper/50 border-b border-paper/20 pb-0.5 hover:text-paper hover:border-paper/50 transition-colors">
+          <span class="en">Support Us →</span>
+          <span class="fr">Nous soutenir →</span>
+          <span class="ar">← ادعمنا</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- subtle dot grid -->
+    <div class="pointer-events-none absolute inset-0 opacity-[0.04]"
+      style="background-image: radial-gradient(circle, #F5F4EF 1px, transparent 1px); background-size: 28px 28px;">
+    </div>
+  </header>
+
+  <!-- PHOTO BAND -->
+  <div class="w-full overflow-hidden" style="height: clamp(260px, 40vw, 520px);">
+    <img
+      src="/images/protest-1.webp"
+      alt="Protest — fists raised in solidarity"
+      class="w-full h-full object-cover object-center"
+      style="filter: grayscale(100%) contrast(1.05);"
+    />
+  </div>
+
+  <!-- PRIORITIES -->
+  <section class="px-8 py-24 bg-paper">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-16 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <h2 class="text-6xl md:text-7xl font-black leading-none tracking-tighter text-ink uppercase">
+          <span class="en">Our<br>Priorities</span>
+          <span class="fr">Nos<br>priorités</span>
+          <span class="ar">أولوياتنا</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {priorities.map((p) => (
+          <div class="bg-paper-dim p-8 flex flex-col justify-between min-h-[280px]">
+            <div>
+<p class="text-sm leading-relaxed text-muted">
+                <span class="en">{p.body.en}</span>
+                <span class="fr">{p.body.fr}</span>
+                <span class="ar">{p.body.ar}</span>
+              </p>
+            </div>
+            <p class="mt-8 text-xs font-black tracking-widest uppercase text-ink">
+              <span class="en">{p.label.en}</span>
+              <span class="fr">{p.label.fr}</span>
+              <span class="ar">{p.label.ar}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER: dark band -->
+  <section class="bg-ink-soft px-8 py-20" id="newsletter">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 md:grid-cols-2 md:items-end">
+        <h2 class="text-5xl font-black leading-none tracking-tighter text-paper uppercase">
+          <span class="en">Stay<br>Informed</span>
+          <span class="fr">Restez<br>informés</span>
+          <span class="ar">ابقَ على<br>اطلاع</span>
+        </h2>
+        <div>
+          <p class="mb-6 text-sm leading-relaxed text-paper/55">
+            <span class="en">Subscribe to our newsletter.</span>
+            <span class="fr">Abonnez-vous à notre newsletter.</span>
+            <span class="ar">اشترك في نشرتنا الإخبارية.</span>
+          </p>
+          <form id="nlForm" class="flex gap-0">
+            <input
+              id="nlEmail"
+              type="email"
+              required
+              placeholder="your@email.com"
+              class="flex-1 border border-paper/20 bg-transparent px-4 py-3 text-sm text-paper placeholder:text-paper/30 focus:outline-none focus:border-paper/50"
+            />
+            <button
+              type="submit"
+              class="border border-paper/20 border-s-0 px-6 py-3 text-xs font-bold tracking-widest uppercase text-paper hover:bg-paper hover:text-ink transition-colors"
+            >
+              <span class="en">Subscribe</span>
+              <span class="fr">S'abonner</span>
+              <span class="ar">اشترك</span>
+            </button>
+          </form>
+          <p id="nlMsg" class="mt-3 text-xs font-semibold text-paper/50"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATION -->
+  <section class="bg-paper px-8 py-24" id="donate">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-16">
+        <h2 class="text-6xl md:text-7xl font-black leading-none tracking-tighter text-ink uppercase">
+          <span class="en">Support<br>Our Work</span>
+          <span class="fr">Soutenez<br>notre travail</span>
+          <span class="ar">ادعم<br>عملنا</span>
+        </h2>
+      </div>
+
+      <div class="grid gap-16 lg:grid-cols-2">
+        <!-- Impact -->
+        <div>
+          <p class="mb-8 text-base leading-relaxed text-muted max-w-sm">
+            <span class="en">Your contribution funds our research, legal advocacy, and community programmes. Every donation advances human rights.</span>
+            <span class="fr">Votre contribution finance nos recherches, notre plaidoyer juridique et nos programmes communautaires. Chaque don fait avancer les droits humains.</span>
+            <span class="ar">تموّل مساهمتك أبحاثنا ومناصرتنا القانونية وبرامجنا المجتمعية. كل تبرع يدعم حقوق الإنسان.</span>
+          </p>
+        </div>
+
+        <!-- Form -->
+        <div>
+          <div id="donateForm">
+            <div id="donateError" class="hidden mb-5 form-error-box px-4 py-3 text-sm">
+              <span class="en">Please fill in your name, email, and donation amount.</span>
+              <span class="fr">Veuillez renseigner votre nom, e-mail et montant du don.</span>
+              <span class="ar">يرجى إدخال الاسم والبريد الإلكتروني ومبلغ التبرع.</span>
+            </div>
+            <label class="block text-xs font-bold tracking-widest uppercase text-muted mb-5">
+              <span class="en">Amount</span><span class="fr">Montant</span><span class="ar">المبلغ</span>
+              <input
+                id="amtInput"
+                type="number"
+                min="1"
+                class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-ink focus:outline-none"
+                placeholder="Enter amount…"
+                data-ph-en="Enter amount…"
+                data-ph-ar="أدخل المبلغ…"
+              />
+            </label>
+
+            <div class="space-y-4">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Full Name</span><span class="fr">Nom complet</span><span class="ar">الاسم الكامل</span>
+                  <input id="dName" type="text" required placeholder="Full name" data-ph-en="Full name" data-ph-ar="الاسم الكامل" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-ink focus:outline-none" />
+                </label>
+                <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Email</span><span class="fr">E-mail</span><span class="ar">البريد الإلكتروني</span>
+                  <input id="dEmail" type="email" required placeholder="you@example.com" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none" />
+                </label>
+              </div>
+
+              <label class="block text-xs font-bold tracking-widest uppercase text-muted">
+                <span class="en">Frequency</span><span class="fr">Fréquence</span><span class="ar">التكرار</span>
+                <select id="dFreq" class="mt-2 w-full border border-line bg-paper px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none">
+                  <option value="once"    data-en="One-time" data-fr="Ponctuel" data-ar="مرة واحدة">One-time</option>
+                  <option value="monthly" data-en="Monthly"  data-fr="Mensuel"  data-ar="شهري">Monthly</option>
+                  <option value="annual"  data-en="Yearly"   data-fr="Annuel"   data-ar="سنوي">Yearly</option>
+                </select>
+              </label>
+
+              <button
+                type="button"
+                id="donateBtn"
+                class="w-full border border-ink bg-ink py-4 text-xs font-bold tracking-widest uppercase text-paper hover:bg-ink-soft transition-colors"
+              >
+                <span class="en">Donate Now</span>
+                <span class="fr">Faire un don</span>
+                <span class="ar">تبرع الآن</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="donateOk" class="hidden border border-line p-8">
+            <div class="mb-6 flex items-center gap-3">
+              <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-amber-700 text-sm">⏳</span>
+              <span class="text-xs font-bold tracking-widest uppercase text-amber-700">
+                <span class="en">Pending</span>
+                <span class="ar">قيد المعالجة</span>
+              </span>
+            </div>
+            <h3 class="mb-1 text-2xl font-black tracking-tight text-ink">
+              <span class="en">Donation Submitted.</span>
+              <span class="fr">Don soumis.</span>
+              <span class="ar">تم تقديم تبرعك.</span>
+            </h3>
+            <p class="mb-6 text-sm text-muted leading-relaxed">
+              <span class="en">Your donation is being processed. A confirmation will be sent to your email once complete.</span>
+              <span class="ar">جارٍ معالجة تبرعك. سيُرسَل تأكيد إلى بريدك الإلكتروني عند الانتهاء.</span>
+            </p>
+            <div class="space-y-0 border border-line">
+              <div class="flex justify-between border-b border-line px-4 py-3">
+                <span class="text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Reference</span><span class="ar">المرجع</span>
+                </span>
+                <span id="donateRef" class="text-xs font-mono font-bold text-ink"></span>
+              </div>
+              <div class="flex justify-between border-b border-line px-4 py-3">
+                <span class="text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Amount</span><span class="ar">المبلغ</span>
+                </span>
+                <span id="donateAmt" class="text-xs font-bold text-ink"></span>
+              </div>
+              <div class="flex justify-between border-b border-line px-4 py-3">
+                <span class="text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Donor</span><span class="ar">المتبرع</span>
+                </span>
+                <span id="donateName" class="text-xs font-bold text-ink"></span>
+              </div>
+              <div class="flex justify-between px-4 py-3">
+                <span class="text-xs font-bold tracking-widest uppercase text-muted">
+                  <span class="en">Status</span><span class="ar">الحالة</span>
+                </span>
+                <span class="text-xs font-bold text-amber-700">
+                  <span class="en">Pending</span><span class="ar">قيد المعالجة</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  /* ── Slot-machine roll: each letter is a physical column that scrolls up ── */
+  function slotMachineScramble(el: HTMLElement) {
+    const EN      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const ROLL    = 10;
+    const DUR     = 520;
+    const STAGGER = 52;
+
+    const cs = getComputedStyle(el);
+    const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 0.88;
+
+    const origNodes = [...el.childNodes];
+    el.innerHTML = "";
+
+    interface Slot { outer: HTMLElement; inner: HTMLElement; i: number; ch: string; }
+    let idx = 0;
+    const slots: Slot[] = [];
+
+    // ── Phase 1: build slots showing only the final character ──
+    // Measure from the live DOM so widths are pixel-perfect in context.
+    // clip-path instead of overflow:hidden lets random chars overflow
+    // horizontally (fully visible, no clipping) while still clipping vertically.
+    for (const node of origNodes) {
+      if (node.nodeType === Node.ELEMENT_NODE && (node as Element).tagName === "BR") {
+        el.appendChild(document.createElement("br")); continue;
+      }
+      if (node.nodeType !== Node.TEXT_NODE) continue;
+
+      for (const ch of node.textContent ?? "") {
+        if (/\s/.test(ch)) { el.appendChild(document.createTextNode(ch)); continue; }
+
+        const outer = document.createElement("span");
+        outer.style.cssText = `display:inline-block;vertical-align:top;height:${lh}px;overflow:visible;clip-path:inset(0 -999px);`;
+
+        const inner = document.createElement("span");
+        inner.style.cssText = "display:block;";
+
+        const fin = document.createElement("span");
+        fin.style.cssText = `display:block;height:${lh}px;line-height:${lh}px;clip-path:inset(0 -999px);`;
+        fin.textContent = ch;
+        inner.appendChild(fin);
+        outer.appendChild(inner);
+        el.appendChild(outer);
+
+        if (/[A-Za-z]/.test(ch)) slots.push({ outer, inner, i: idx++, ch });
+      }
+    }
+
+    // ── Phase 2: measure each slot's real rendered width from the live DOM ──
+    void el.getBoundingClientRect(); // force layout
+    for (const { outer } of slots) {
+      outer.style.width = outer.getBoundingClientRect().width + "px";
+    }
+
+    // ── Phase 3: prepend random chars above the final char in each column ──
+    for (const { inner, ch } of slots) {
+      const pool = /[A-Z]/.test(ch) ? EN : EN.toLowerCase();
+      for (let r = 0; r < ROLL; r++) {
+        const s = document.createElement("span");
+        s.style.cssText = `display:block;height:${lh}px;line-height:${lh}px;clip-path:inset(0 -999px);`;
+        s.textContent = pool[Math.floor(Math.random() * pool.length)];
+        inner.insertBefore(s, inner.firstChild);
+      }
+    }
+
+    // ── Phase 4: animate — scroll each column up to reveal the final char ──
+    for (const { inner, i } of slots) {
+      setTimeout(() => {
+        inner.style.transition = `transform ${DUR}ms cubic-bezier(0.19,1,0.22,1)`;
+        inner.style.transform  = `translateY(-${ROLL * lh}px)`;
+      }, i * STAGGER);
+    }
+    // No restore needed — slots are sized from the final char, so the settled
+    // state already matches the natural text exactly.
+  }
+
+  /* ── Arabic hero: word-by-word right→left clip reveal ── */
+  function animateArHero() {
+    const POOL       = ["حرية","كرامة","عدالة","سلام","نضال","تضامن","حماية","وحدة","صمود","أمل","شعوب","مساواة"];
+    const POOL_SHORT = ["أمل","نور","صبر","حق","سلم","وطن","دور","حرب","شعب","دم"];
+    const ROLL    = 40;
+    const DUR     = 600;
+    const STAGGER = 50;
+
+    const words = document.querySelectorAll<HTMLElement>(".ar-w");
+    words.forEach((w, i) => {
+      const realText = w.textContent ?? "";
+
+      // Measure BEFORE rebuilding; add 25% for Amiri descenders/calligraphic marks
+      const rect  = w.getBoundingClientRect();
+      const rawH  = rect.height || parseFloat(getComputedStyle(w).fontSize) * 1.4;
+      const lineH = rawH * 1.25;
+      const isShort = realText.length <= 3;
+      const natW  = rect.width + (realText.length === 3 ? 24 : 0); // 3-char slots get extra right room
+
+      const fs      = parseFloat(getComputedStyle(w).fontSize);
+      const descPad = fs * 0.2;
+      const ascPad  = fs * 0.25;
+      const rowH    = lineH + descPad + ascPad;
+      w.style.display       = "inline-block";
+      w.style.overflow      = "hidden";
+      w.style.height        = rowH + "px";
+      w.style.width         = natW + "px";
+      w.style.verticalAlign = "bottom";
+      w.style.clipPath      = "";
+      w.innerHTML = "";
+
+      const inner = document.createElement("span");
+      inner.style.display = "block";
+
+      const pool = isShort ? POOL_SHORT : POOL;
+      for (let r = 0; r < ROLL; r++) {
+        const row = document.createElement("span");
+        row.style.cssText = `display:block;height:${rowH}px;line-height:${lineH}px;padding-top:${ascPad}px;`;
+        row.textContent = pool[(i + r) % pool.length];
+        inner.appendChild(row);
+      }
+
+      const fin = document.createElement("span");
+      fin.style.cssText = `display:block;height:${rowH}px;line-height:${lineH}px;padding-top:${ascPad}px;`;
+      fin.textContent = realText;
+      inner.appendChild(fin);
+      w.appendChild(inner);
+
+      setTimeout(() => {
+        inner.style.transition = `transform ${DUR}ms cubic-bezier(0.19,1,0.22,1)`;
+        inner.style.transform  = `translateY(-${ROLL * rowH}px)`;
+
+      }, i * STAGGER);
+    });
+  }
+
+  const heroH1 = document.querySelector("h1");
+  function runHeroAnim() {
+    const lang = document.documentElement.lang;
+    if (lang === "ar") {
+      animateArHero();
+    } else if (heroH1) {
+      const span = heroH1.querySelector<HTMLElement>(lang === "fr" ? ".fr" : ".en");
+      if (span) slotMachineScramble(span);
+    }
+  }
+  runHeroAnim();
+
+  // Re-run appropriate animation when language switches
+  new MutationObserver(runHeroAnim).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+
+document.getElementById("nlForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const msg = document.getElementById("nlMsg");
+    if (!msg) return;
+    const lang = document.documentElement.lang;
+    msg.textContent = lang === "ar"
+      ? "✓ شكراً! تم اشتراكك في النشرة الإخبارية."
+      : lang === "fr"
+      ? "✓ Abonné(e). Merci de rejoindre notre newsletter."
+      : "✓ Subscribed. Thank you for joining our newsletter.";
+    (e.target as HTMLFormElement).reset();
+  });
+
+  // Bilingual placeholders
+  function syncPlaceholders() {
+    const lang = document.documentElement.getAttribute("lang") || "en";
+    const isAr = lang === "ar";
+    const isFr = lang === "fr";
+    document.querySelectorAll<HTMLInputElement>("[data-ph-ar]").forEach((el) => {
+      el.placeholder = isAr ? (el.dataset.phAr ?? "") : (el.dataset.phEn ?? "");
+    });
+    document.querySelectorAll<HTMLOptionElement>("option[data-ar]").forEach((el) => {
+      el.textContent = isAr ? (el.dataset.ar ?? "") : isFr ? (el.dataset.fr ?? el.dataset.en ?? "") : (el.dataset.en ?? "");
+    });
+  }
+  syncPlaceholders();
+  new MutationObserver(syncPlaceholders).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+
+  document.getElementById("donateBtn")?.addEventListener("click", () => {
+    const name  = (document.getElementById("dName")    as HTMLInputElement).value.trim();
+    const email = (document.getElementById("dEmail")   as HTMLInputElement).value.trim();
+    const amt   = (document.getElementById("amtInput") as HTMLInputElement).value.trim();
+    const errEl = document.getElementById("donateError");
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    const nameEl  = document.getElementById("dName")    as HTMLInputElement;
+    const emailEl = document.getElementById("dEmail")   as HTMLInputElement;
+    const amtEl   = document.getElementById("amtInput") as HTMLInputElement;
+
+    nameEl.classList.toggle("field-error",  !name);
+    amtEl.classList.toggle("field-error",   !amt);
+    emailEl.classList.toggle("field-error", !email || !EMAIL_RE.test(email));
+
+    if (!name || !email || !amt || !EMAIL_RE.test(email)) {
+      errEl?.classList.remove("hidden");
+      errEl?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    errEl?.classList.add("hidden");
+
+    // Clear red borders on input
+    [nameEl, emailEl, amtEl].forEach(el => el.addEventListener("input", () => el.classList.remove("field-error"), { once: true }));
+
+    const ref = "DON-" + new Date().getFullYear() + "-" + String(Math.floor(Math.random() * 900) + 100);
+    const el = (id: string) => document.getElementById(id);
+    (el("donateRef") as HTMLElement).textContent = ref;
+    (el("donateAmt") as HTMLElement).textContent = amt + " (USD)";
+    (el("donateName") as HTMLElement).textContent = name;
+    el("donateForm")?.classList.add("hidden");
+    el("donateOk")?.classList.remove("hidden");
+  });
+</script>

@@ -1,0 +1,51 @@
+---
+---
+
+<footer class="border-t border-line bg-paper px-8 py-10">
+  <div class="mx-auto max-w-7xl">
+    <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+
+      <div>
+        <p class="mb-1 text-sm font-bold text-ink">
+          <span class="en">IMHPR</span>
+          <span class="ar">IMHPR</span>
+        </p>
+        <p class="text-xs text-muted">
+          <span class="en">International Movement for Human and Peoples' Rights</span>
+          <span class="ar">الحركة الدولية لحقوق الإنسان والشعوب</span>
+          <span class="fr">Mouvement International pour les Droits Humains et des Peuples</span>
+        </p>
+      </div>
+
+      <nav class="flex flex-wrap gap-x-8 gap-y-3">
+        {[
+          { href: "/",            en: "Home",    ar: "الرئيسية", fr: "Accueil" },
+          { href: "/about",       en: "About",   ar: "من نحن",   fr: "À propos" },
+          { href: "/news",        en: "News",    ar: "الأخبار",  fr: "Actualités" },
+          { href: "/events",      en: "Events",  ar: "الفعاليات",fr: "Événements" },
+          { href: "/application", en: "Apply",   ar: "تقديم",   fr: "Rejoindre" },
+          { href: "/contact",     en: "Contact", ar: "تواصل",   fr: "Contact" },
+        ].map((link) => (
+          <a href={link.href} class="text-xs font-bold tracking-widest uppercase text-muted hover:text-ink transition-colors">
+            <span class="en">{link.en}</span>
+            <span class="ar">{link.ar}</span>
+            <span class="fr">{link.fr}</span>
+          </a>
+        ))}
+      </nav>
+
+
+    </div>
+
+    <div class="mt-8 border-t border-line pt-6 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+      <p class="text-xs text-muted">
+        <span class="en">&copy; 2025 IMHPR. All rights reserved.</span>
+        <span class="ar">&copy; 2025 IMHPR. جميع الحقوق محفوظة.</span>
+        <span class="fr">&copy; 2025 IMHPR. Tous droits réservés.</span>
+      </p>
+      <p class="text-xs text-muted">
+        <a href="mailto:president@imhp-rights.org" class="hover:text-ink transition-colors">president@imhp-rights.org</a>
+      </p>
+    </div>
+  </div>
+</footer>

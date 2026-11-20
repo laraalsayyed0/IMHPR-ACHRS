@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Page Not Found — IMHPR">
+  <Nav />
+
+  <section class="bg-ink px-8 py-32 min-h-[70vh] flex items-center">
+    <div class="mx-auto max-w-7xl w-full">
+      <p class="mb-4 text-xs font-bold tracking-widest uppercase text-paper/40">
+        <span class="en">Error 404</span>
+        <span class="ar">خطأ 404</span>
+      </p>
+      <h1 class="text-[18vw] md:text-[14vw] font-black leading-none tracking-tighter text-paper/10 select-none">
+        404
+      </h1>
+      <div class="-mt-[4vw] relative z-10">
+        <h2 class="text-3xl md:text-5xl font-black leading-none tracking-tighter text-paper uppercase mb-6">
+          <span class="en block">Page Not Found</span>
+          <span class="ar block">الصفحة غير موجودة</span>
+        </h2>
+        <p class="text-sm text-paper/50 mb-10 max-w-md leading-relaxed">
+          <span class="en">The page you're looking for doesn't exist or has been moved.</span>
+          <span class="ar">الصفحة التي تبحث عنها غير موجودة أو تم نقلها.</span>
+        </p>
+        <div class="flex gap-4">
+          <a href="/" class="border border-paper px-6 py-3 text-xs font-bold tracking-widest uppercase text-paper hover:bg-paper hover:text-ink transition-colors">
+            <span class="en">Go Home</span>
+            <span class="ar">الصفحة الرئيسية</span>
+          </a>
+          <a href="/contact" class="border border-paper/30 px-6 py-3 text-xs font-bold tracking-widest uppercase text-paper/60 hover:border-paper hover:text-paper transition-colors">
+            <span class="en">Contact Us</span>
+            <span class="ar">تواصل معنا</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --color-ink:       #0D1A2E;
+  --color-ink-soft:  #1A2B42;
+  --color-paper:     #F5F7FC;
+  --color-paper-dim: #E6EBF5;
+  --color-accent:    #2454A8;
+  --color-accent-mid:#3A6BC9;
+  --color-muted:     #4A5568;
+  --color-line:      #CDD5E4;
+  --color-error:     #7a2020;
+  --color-error-bg:  #f9f0f0;
+  --color-error-border: #c9a0a0;
+}
+
+/* Muted error styling used on forms */
+.field-error  { border-color: var(--color-error-border) !important; }
+.form-error-box {
+  border: 1px solid var(--color-error-border);
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.ar { display: none; }
+html[lang="ar"] .en { display: none; }
+html[lang="ar"] .ar { display: inline; }
+html[lang="ar"] { direction: rtl; font-family: "Amiri", serif; }
+
+/* Amiri renders smaller than Cairo — nudge body text up, leave headings alone */
+html[lang="ar"] .text-xs  { font-size: 0.875rem; }
+html[lang="ar"] .text-sm  { font-size: 1rem; }
+html[lang="ar"] .text-base { font-size: 1.125rem; }
+
+.fr { display: none; }
+html[lang="fr"] .en { display: none; }
+html[lang="fr"] .fr { display: inline; }
+
+/* Language switcher: hide the button for the current language */
+html[lang="en"] [data-set-lang="en"],
+html[lang="fr"] [data-set-lang="fr"],
+html[lang="ar"] [data-set-lang="ar"] { display: none; }
